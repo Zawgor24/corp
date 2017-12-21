@@ -1,0 +1,4 @@
+tr
+  td = workshop.name
+  td = link_to workshop.manager.name, manager_path(workshop) if workshop.manager.present?
+  td = link_to 'Watch', workshop_taskmasters_path(workshop) if workshop.taskmasters.present?
