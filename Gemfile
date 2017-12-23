@@ -13,14 +13,15 @@ gem 'carrierwave', '~> 1.0'
 gem 'cloudinary'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'enumerize'
 gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 gem 'figaro'
 gem 'jbuilder', '~> 2.5'
-gem 'enumerize'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'pundit'
 gem 'rails', '~> 5.1.4'
+gem 'rails_12factor', group: :production
 gem 'rmagick'
 gem 'sass-rails', '~> 5.0'
 gem 'slim'
@@ -40,3 +41,5 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+ruby '2.4.2'

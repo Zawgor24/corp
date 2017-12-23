@@ -21,12 +21,15 @@
     = f.text_field :name
 
   p
+    = f.label :age
+    = f.text_field :age
+
+  p
     = f.label :nation
     = f.text_field :nation
-  
-  / p
-  /   = f.select_field (:sex, %w{ Male Female }, :include_blank =&gt; true)
-
+  p
+    = f.label :sex
+    = f.select :sex, Principal.sex.options
   p
     = f.label :avatar
     = f.file_field :avatar

@@ -9,10 +9,14 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+
   <ul class="nav navbar-nav">
     <% if current_worker.present? %>
-      <li class="active"><%= link_to 'Go home', root_path %></li>
-      <li><%= link_to 'Profile', current_worker %></li> 
+      <li class="active link"><%= link_to 'Go home', root_path %></li> 
+      <li class="link"><%= link_to 'Profile', current_worker %></li> 
   </ul>
       <button class="logout btn btn-danger navbar-btn" ><%= link_to 'Log out', destroy_worker_session_path,
                           method: :delete %></button>

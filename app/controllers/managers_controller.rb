@@ -1,17 +1,26 @@
+# frozen_string_literal: true
+
 class ManagersController < ApplicationController
   before_action :find_manager, only: %i[show edit update destroy]
-  before_action :find_workshop, only: %i[create]
+  before_action :find_workshop, only: %i[create new]
+
+  after_action :verify_authorized, except: :index
+
   def new
     @manager = Manager.new
+
+    authorize @manager
   end
 
   def create
     @manager = @workshop.create_manager(manager_params)
+    authorize @manager
 
     if @manager.save
+      FromAppMailer.sample_email(@manager, params[:manager][:password]).deliver_now
       redirect_to @manager
     else
-      render :new      
+      render :new
     end
   end
 
@@ -33,6 +42,8 @@ class ManagersController < ApplicationController
 
   def find_manager
     @manager = Manager.find(params[:id])
+
+    authorize @manager
   end
 
   def find_workshop
@@ -40,7 +51,7 @@ class ManagersController < ApplicationController
   end
 
   def manager_params
-    params.require(:manager).permit(:name, :age, :nation, :sex, :avatar,
-                                      :salary, :work_rating)
+    params.require(:manager).permit(:email, :password, :name, :age, :nation, :sex, :avatar,
+      :salary, :work_rating)
   end
 end
